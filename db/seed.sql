@@ -11,6 +11,13 @@ insert into role (title, salary, department_id) values
 ('Application Analyst', 98000, 2), 
 ('User Interface Designer', 112000, 2);
 
-insert into employee  (first_name, last_name, role_id, manager_id) values ("John", "Doe", 1, null);
-
-insert into employee  (first_name, last_name, role_id, manager_id) values ("Jane", "Doe", 1, 1);
+insert into employee  
+(first_name, last_name, role_id, manager_id) 
+values 
+("Louis", "Armstrong", 1, null),
+("Jimi", "Hendrix", 2, 1),
+("Charlie", "Parker", 3, 1),
+("Billie", "Holiday", 4, 1),
+("Hector", "Lavoe", 5, 1),
+("Celia", "Cruz", 6, 1),
+("Dinah", "Washington", 7, 1);

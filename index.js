@@ -55,7 +55,8 @@ function init() {
           }
         });
       } else if (response.choice === "Add a department") {
-        inquirer.prompt ([
+        inquirer
+        .prompt ([
             {
             message: "What is the name of the department that you'd like to add?",
             type: "input",
@@ -76,7 +77,8 @@ function init() {
         });
            
     } else if (response.choice === "Add a role") {
-        inquirer.prompt ([
+        inquirer
+        .prompt ([
             {
             message: "What is the name of the role that you would like to add?",
             type: "input",
@@ -142,12 +144,9 @@ function init() {
             {
                 message: "Which role would you like to assign to this employee?",
                 type: "list",
-                choices: [
-                    'Management', 
-                    'Employee Relations Manager', 
-                    'Director', 'Recruiter', 
-                    'Compliance Analyst', 
-                    'IT Security Specialist', 
+                choices: [ 
+                    'Employee Relations Manager',  
+                    'Recruiter',  
                     'Web Developer', 
                     'Application Analyst', 
                     'User Interface Designer'
@@ -156,15 +155,15 @@ function init() {
             },
         
         ])  .then (data=> {
-            const sql = `update role (title, salary, department_id) VALUES (?, ?, ?)`;
-        const params = [data.roleTitle, data.salary, data.departmentId];
+            const sql = `UPDATE role SET title = ?, salary = ?, department_id = ? WHERE id = ?`;
+        const params = [data.roleChoices, data.salary, data.departmentId, data.id];
         db.query(sql, params, (err, result) => {
             if (err) {
               console.log(err);
               return;
             } else {
               console.table(result);
-              
+              init()
             }
           });
         });

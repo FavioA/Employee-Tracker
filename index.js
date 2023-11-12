@@ -103,7 +103,6 @@ function init() {
               console.log(err);
               return;
             } else {
-            //id = result.insertId;
             console.table(result);
             init();
             }
@@ -128,7 +127,8 @@ function init() {
             },
             {
             message: "Who is the manager of the employee?",
-            type: "input",
+            type: "list",
+            choices: [1],
             name: 'managerId'
             },
         ]) .then (data=> {

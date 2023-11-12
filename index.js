@@ -82,46 +82,61 @@ function init() {
             {
             message: "What is the name of the role that you would like to add?",
             type: "input",
-            name: 'departmentName'
+            name: 'title'
             },
             {
             message: "What is the salary of the role that you would like to add?",
             type: "input",
-            name: 'departmentName'
+            name: 'salary'
             },
             {
             message: "What department does this role belong to?",
-            type: "input",
-            name: 'departmentName'
+            type: "list",
+            choices: [
+                'HR',
+                'TECH',
+            ],
+            name: 'departmentId',
             }
         ]) .then (data=> {
-            const sql = `INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)`;
-        const params = [data.roleTitle, data.salary, data.departmentId];
-        db.query(sql, params, (err, result) => {
+            const sql = `INSERT INTO role (id, title, salary, department_id) VALUES (?, ?, ?, ?)`;
+            const params = [data.title, data.salary, data.departmentId];
+            db.query(sql, params, (err, result) => {
             if (err) {
               console.log(err);
               return;
             } else {
-              console.table(result);
-              init();
+            //id = result.insertId;
+            console.table(result);
+            init();
             }
           });
         })
       } else if (response.choice === "Add an employee") {
         inquirer.prompt ([
             {
-            message: "What is the first name of the employee that you would like to add?",
+            message: "What is the new employee's first name?",
             type: "input",
-            name: 'departmentName'
+            name: 'firstName'
             },
             {
-            message: "What is the last name of the department that you'd like to add?",
+            message: "What is the new employee's last name?",
             type: "input",
-            name: 'departmentName'
-            }
+            name: 'lastName'
+            },
+            {
+            message: "What is the new employee's role?",
+            type: "input",
+            name: 'roleId'
+            },
+            {
+            message: "Who is the manager of the employee?",
+            type: "input",
+            name: 'managerId'
+            },
         ]) .then (data=> {
-            const sql = `INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)`;
-        const params = [data.roleTitle, data.salary, data.departmentId];
+            const sql = `INSERT INTO employee ('first_name', 'last_name', 'role_id', 'manager_id') VALUES (?, ?, ?, ?)`;
+        const params = [data.firstName, data.lastName, data.roleId, data.managerId];
         db.query(sql, params, (err, result) => {
             if (err) {
               console.log(err);
@@ -136,27 +151,37 @@ function init() {
         inquirer
         .prompt ([
             {
-                message: "What employee's role would you like to update?",
+                message: "Which employee's role would you like to update?",
                 type: "list",
-                choices: ['John Doe', 'Jane Doe'],
-                name: 'newRole',
+                choices: [
+                    'Louis Armstrong', 
+                    'Jimi Hendrix', 
+                    'Charlie Parker', 
+                    'Billie Holiday', 
+                    'Hector Lavoe', 
+                    'Celia Cruz', 
+                    'Dinah Washington'
+                ],
+                name: 'currentTitle',
             },
             {
                 message: "Which role would you like to assign to this employee?",
                 type: "list",
                 choices: [ 
+                    'HR Rep',
+                    'Technologist',
                     'Employee Relations Manager',  
                     'Recruiter',  
                     'Web Developer', 
                     'Application Analyst', 
                     'User Interface Designer'
                 ],
-                name: 'roleChoices',
+                name: 'newTitle',
             },
         
         ])  .then (data=> {
             const sql = `UPDATE role SET title = ?, salary = ?, department_id = ? WHERE id = ?`;
-        const params = [data.roleChoices, data.salary, data.departmentId, data.id];
+        const params = [data.currentTitle, data.newTitle, data.salary, data.departmentId, data.id];
         db.query(sql, params, (err, result) => {
             if (err) {
               console.log(err);

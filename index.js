@@ -92,14 +92,11 @@ function init() {
             {
             message: "What department does this role belong to?",
             type: "list",
-            choices: [
-                'HR',
-                'TECH',
-            ],
+            choices: [1, 2],
             name: 'departmentId',
             }
         ]) .then (data=> {
-            const sql = `INSERT INTO role (id, title, salary, department_id) VALUES (?, ?, ?, ?)`;
+            const sql = `INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)`;
             const params = [data.title, data.salary, data.departmentId];
             db.query(sql, params, (err, result) => {
             if (err) {

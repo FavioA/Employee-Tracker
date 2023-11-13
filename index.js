@@ -44,7 +44,22 @@ function init() {
           }
         });
       } else if (response.choice === "View all employees") {
-        const sql = `SELECT * FROM employee`;
+        const sql = `SELECT 
+            employee.id,
+            employee.first_name,
+            employee.last_name,
+            role.title,
+            department.name AS department,
+            role.salary,
+            CONCAT(manager.first_name, ' ', manager.last_name) AS manager
+            FROM 
+            employee
+            LEFT JOIN
+            role on employee.role_id = role.id
+            LEFT JOIN
+            department on role.department_id = department.id
+            LEFT JOIN 
+            employee manager on manager.id = employee.manager_id`;
         db.query(sql, (err, result) => {
           if (err) {
             console.log(err);
@@ -121,7 +136,7 @@ function init() {
             name: 'lastName'
             },
             {
-            message: "What is the new employee's role?",
+            message: "What is the new employee's role_id?",
             type: "input",
             name: 'roleId'
             },
@@ -132,7 +147,7 @@ function init() {
             name: 'managerId'
             },
         ]) .then (data=> {
-            const sql = `INSERT INTO employee ('first_name', 'last_name', 'role_id', 'manager_id') VALUES (?, ?, ?, ?)`;
+            const sql = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)`;
         const params = [data.firstName, data.lastName, data.roleId, data.managerId];
         db.query(sql, params, (err, result) => {
             if (err) {

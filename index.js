@@ -136,9 +136,19 @@ function init() {
             name: 'lastName'
             },
             {
-            message: "What is the new employee's role_id?",
-            type: "input",
-            name: 'roleId'
+            message: "What is the new employee's role?",
+            type: "list",
+            choices: 
+            [
+                'HR Rep',
+                'Technologist',
+                'Employee Relations Manager',
+                'Recruiter',
+                'Web Developer',
+                'Application Analyst',
+                'User Interface Designer'
+            ],
+            name: 'title'
             },
             {
             message: "Who is the manager of the employee?",
@@ -147,8 +157,8 @@ function init() {
             name: 'managerId'
             },
         ]) .then (data=> {
-            const sql = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)`;
-        const params = [data.firstName, data.lastName, data.roleId, data.managerId];
+            const sql = `INSERT INTO employee (first_name, last_name, title, manager_id) VALUES (?, ?, ?, ?)`;
+        const params = [data.firstName, data.lastName, data.title, data.managerId];
         db.query(sql, params, (err, result) => {
             if (err) {
               console.log(err);

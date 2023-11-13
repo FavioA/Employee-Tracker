@@ -4,7 +4,7 @@ insert into department (name) values ('HR'), ('TECH');
 
 insert into role (title, salary, department_id) values 
 ('HR Rep', 100000, 1), 
-('Techonologist', 90000, 2), 
+('Technologist', 90000, 2), 
 ('Employee Relations Manager', 105000, 1),
 ('Recruiter', 95000, 1), 
 ('Web Developer', 120000, 2), 

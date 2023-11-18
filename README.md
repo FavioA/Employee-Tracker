@@ -23,4 +23,4 @@ Content Management System
 [GitHub Repo.](https://github.com/FavioA/Employee-Tracker.git)
 
 ## LInk to Screencastify
-[Screencastify.] (https://github.com/FavioA/Employee-Tracker.git)
+[Screencastify.] (https://watch.screencastify.com/v/WOskpcPEcNeMQF1RaOUv)

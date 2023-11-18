@@ -18,3 +18,9 @@ Content Management System
 * An application that WHEN a user chooses to add an employee, THEN the user is prompted to enter the employee’s first name, last name, role, and manager, and that employee is added to the database.
 
 * An application that WHEN a user chooses to update an employee role, THEN the user is prompted to select an employee to update and their new role and this information is updated in the database. 
+
+## Link to GitHub Repo
+[GitHub Repo.](https://github.com/FavioA/Employee-Tracker.git)
+
+## LInk to Screencastify
+[Screencastify.] (https://github.com/FavioA/Employee-Tracker.git)

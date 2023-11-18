@@ -238,12 +238,5 @@ function init() {
         console.log("Invalid choice!");
       }
     });
-
-  // db.query(sql, params, (err, result) => {
-  //     if(err) {
-  //         res.status(400).json({ error: err.message });
-  //         return;
-  //     }
-  // })
 }
 init();
